@@ -47,6 +47,7 @@
     /*===== z index =====*/
     --z-fixed: 10;
     --z-modal: 100;
+}
 
     /* Responsive Typography*/
     @media screen and (max-width: 1024px) {
@@ -116,4 +117,4 @@ input {
     outline: none;
 }
 
-}
+
