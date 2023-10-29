@@ -128,6 +128,25 @@ input {
     display: grid;
 }
 
+/*=============== REUSABLE CSS CLASSES ===============*/
+
+.section {
+    padding: 6.5rem 0 2rem;
+}
+
+.section__title {
+    text-align: center;
+    font-size: var(--h1-font-size);
+    margin-bottom: var(--mb-3);
+}
+
+.section__title::before {
+    content: attr(data-heading);
+    display: block;
+    font-size: var(--normal-font-size);
+    font-weight: var(--font-medium);
+    color: var(--skin-color);
+}
 
 /*============= SIDEBAR ================*/
 .sidebar {
@@ -375,4 +394,56 @@ input {
 
 .button__icon {
     font-size: 1.25rem;
+}
+
+
+/*=============== ABOUT SECTION ===============*/
+.about__container {
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 4rem;
+    align-items: center;
+}
+
+.about__img {
+    width: 480px;
+    border-radius: 0.75rem;
+    justify-self: center;
+}
+
+.about__heading {
+    font-size: var(--h3-font-size);
+    margin-bottom: var(--mb-0-75);
+}
+
+.about__description {
+    text-align: justify;
+    padding-right: 6rem;
+    margin-bottom: var(--mb-2);
+}
+
+.about__info {
+    grid-template-columns: repeat(3, 140px);
+    column-gap: .5rem;
+    margin-bottom: var(--mb-3);
+}
+
+.about__box {
+    text-align: center;
+    border-radius: .25rem;
+    padding: 1rem 1.25rem;
+    background-color: var(--box-color);
+}
+
+.about__icon {
+    font-size: 1.5rem;
+    color: var(--skin-color);
+    margin-bottom: var(--mb-0-75);
+}
+
+.about__title {
+    font-size: var(--small-font-size);
+}
+
+.about__subtitle {
+    font-size: var(--smaller-font-size);
 }
