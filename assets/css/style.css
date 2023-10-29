@@ -116,7 +116,20 @@ input {
     outline: none;
 }
 
-/*====== SIDEBAR ======*/
+/*=============== LAYOUT ===============*/
+
+.container {
+    max-width: 1250px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.grid {
+    display: grid;
+}
+
+
+/*============= SIDEBAR ================*/
 .sidebar {
     position: fixed;
     width: 100px;
@@ -208,4 +221,23 @@ input {
 .main {
     margin-left: 100px;
     padding: 1rem;
+}
+
+/*=============== HOME SECTION ===============*/
+.home {
+    background: url("../img/home-bg.jpg") ;
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+}
+
+.home__container {
+    position: relative;
+    height: 100vh;
+    align-items: center;
+}
+
+.home__img {
+    display: none;
+
 }
