@@ -1,0 +1,535 @@
+/* GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #0E4447;
+    height: 100vh;
+}
+
+.interface {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+}
+
+.btn-contact button {
+    padding: 10px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #df8268;
+    color: #fff;
+    border: 0;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+h2.title {
+    color: #fff;
+    font-size: 38px;
+    text-align: center;
+}
+
+h2.title span {
+    color: #df8268;
+}
+
+button:hover,
+form .btn-send input:hover {
+    box-shadow: 0px 0px 8px #9a5b47;
+    transform: scale(1.05);
+}
+
+.btn-social button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background-color: #df8268;
+    font-size: 22px;
+    color: #fff;
+    cursor: pointer;
+    margin: 0 5px;
+    transition: .2s;
+}
+
+
+/* HEADER */
+
+header {
+    padding: 40px 4%;
+}
+
+header>.interface {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header a {
+    color: #a7a3a3;
+    text-decoration: none;
+    display: inline-block;
+    transition: .2s
+}
+
+header nav.menu-desktop a:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+}
+
+header nav ul {
+    list-style: none;
+}
+
+header nav.menu-desktop ul li {
+    display: inline-block;
+    padding: 0 40px;
+}
+
+header .logo img {
+    width: 150px;
+    height: auto;
+}
+
+/* MENU MOBILE */
+
+.btn-open-menu {
+    display: none;
+}
+
+.btn-open-menu i{
+    color: #df8268;
+    font-size: 40px;
+}
+
+.menu-mobile {
+    background-color: #16585c;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 99999;
+    width: 0%;
+    overflow: hidden;
+    transition: .5s;
+}
+
+.menu-mobile.open-menu{
+    width: 70%;
+}
+
+.menu-mobile.open-menu ~ .overlay-menu{
+    display: block;
+}
+
+.menu-mobile nav ul li a{
+    color: #fff;
+    font-size: 20px;
+    font-weight: 300;
+    padding: 20px 8%;
+    display: block;
+}
+
+.menu-mobile nav ul li a:hover {
+    background-color: #df8268;
+    color: black;
+}
+
+.menu-mobile .btn-close{
+    padding: 20px 5%;
+}
+
+.menu-mobile .btn-close i{
+    color: #df8268;
+    font-size: 30px;
+}
+
+.overlay-menu{
+    background-color: #0e44478f;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 88888;
+    display: none;
+}
+
+
+/* MAIN */
+/* TOP SECTION */
+section.top-of-site {
+    padding: 40px 4%;
+}
+
+section.top-of-site .flex {
+    align-items: center;
+    justify-content: center;
+    gap: 90px;
+}
+
+div.img-top-site img {
+    width: 500px;
+    height: 500px;
+}
+
+.top-of-site h1 {
+    color: #fff;
+    font-size: 42px;
+    line-height: 40px;
+}
+
+.top-of-site .txt-top-site h1 span {
+    color: #df8268;
+}
+
+.top-of-site .txt-top-site p {
+    color: #fff;
+    margin: 40px 0;
+}
+
+.top-of-site .img-top-site img {
+    position: relative;
+    animation: flotar 2s ease-in-out infinite alternate;
+}
+
+@keyframes flotar {
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: 30px;
+    }
+}
+
+/* ESPECIALITIES STYLE*/
+
+section.specialities {
+    padding: 40px 4%;
+}
+
+section.specialities .flex {
+    gap: 60px
+}
+
+.specialities .specialities-box {
+    color: #fff;
+    padding: 40px;
+    border-radius: 20px;
+    margin-top: 45px;
+    transition: .2s;
+}
+
+.specialities .specialities-box p {
+    text-align: justify;
+}
+
+.specialities .specialities-box i {
+    font-size: 70px;
+    color: #df8268;
+}
+
+.specialities .specialities-box h3 {
+    font-size: 28px;
+    margin: 15px 0;
+}
+
+.specialities .specialities-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #ffffff78;
+}
+
+/* ABOUT STYLE */
+section.about {
+    padding: 80px 4%;
+}
+
+section.about .flex {
+    align-items: center;
+    gap: 60px;
+}
+
+.about .about-img img {
+    width: 400px;
+    height: 590px;
+    border-radius: 15px;
+}
+
+.about .about-txt {
+    color: #fff;
+}
+
+.about .about-txt h2 {
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 30px;
+}
+
+.about .about-txt h2 span {
+    color: #df8268;
+    display: block;
+}
+
+.about .about-txt p {
+    margin: 20px 0;
+    text-align: justify;
+}
+
+
+/* PORTFOLIO STYLE */
+section.portfolio {
+    padding: 80px 4%;
+    box-shadow: 0 0 40px 10px #ffffff52;
+}
+
+section.portfolio .flex {
+    justify-content: space-around;
+    margin-top: 60px;
+}
+
+.img-port {
+    width: 360px;
+    height: 460px;
+    border-radius: 40px;
+    cursor: pointer;
+    background-size: cover;
+    background-position: 100% 0;
+    transition: .8s;
+    position: relative;
+}
+
+.img-port:hover {
+    background-position: 100% 100%;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0e444796;
+    font-size: 24px;
+    font-weight: 600;
+    color: #fff;
+    opacity: 0;
+    transition: .5s;
+}
+
+.overlay:hover {
+    opacity: 1;
+}
+
+
+/* CONTACT STYLE */
+
+section.form {
+    padding: 80px 4%;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    background-color: #4b7679;
+    border: 0;
+    outline: 0;
+    padding: 20px 15px;
+    border-radius: 15px;
+    color: #fff;
+    font-size: 18px;
+}
+
+
+form input::placeholder,
+form textarea::placeholder {
+    color: #ffffff9c;
+}
+
+form textarea {
+    resize: none;
+    max-height: 200px;
+}
+
+form .btn-send {
+    margin-top: 20px;
+    text-align: center;
+}
+
+form .btn-send input[type=submit] {
+    width: 120px;
+    background-color: #df8268;
+    color: #fff;
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s;
+}
+
+/* FOOTER STYLE */
+
+footer {
+    padding: 40px 4%;
+    box-shadow: 0 0 40px 10px #ffffff52;
+}
+
+footer a img {
+    width: 150px;
+    height: 150px;
+}
+
+footer .flex {
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .line-footer {
+    padding: 20px 0;
+}
+
+.borde {
+    border-top: 2px solid #df8268;
+}
+
+footer .line-footer p i {
+    color: #df8268;
+    font-size: 22px;
+}
+
+footer .line-footer p a {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+footer .logo-footer img{
+    width: 130px;
+    height: auto;
+}
+
+/** MEDIA QUERIES **/
+
+@media screen and (max-width: 1020px) {
+
+    /* GENERAL */
+    .flex {
+        flex-direction: column;
+    }
+
+    h2.title{
+        font-size: 34px;
+        line-height: 34px;
+    }
+
+    /* TOP SECTION */
+    .top-of-site h1 {
+        font-size: 32px;
+    }
+
+    section.top-of-site {
+        padding: 20px 8%;
+    }
+
+    section.top-of-site .flex {
+        gap: 20px;
+    }
+
+
+    .top-of-site .img-top-site img {
+        display: none;
+    }
+
+    /* HEADER */
+    .menu-desktop,
+    .btn-contact {
+        display: none;
+    }
+
+    header .logo{
+        align-items: center;
+    }
+
+    .btn-open-menu {
+        display: block;
+    }
+
+    /* SPECIALITIES */
+    section.specialities {
+        padding: 40px 8%;
+    }
+
+    /* ABOUT */
+    section.about {
+        padding: 40px 8%;
+    }
+
+    section.about .about-txt h2 {
+        font-size: 34px;
+        line-height: 35px;
+        text-align: center;
+    }
+
+    .btn-social {
+        text-align: center;
+    }
+
+    .about .about-img img {
+        width: 100%;
+        margin: 0 auto;
+
+    }
+
+    /* PORTFOLIO */
+
+    section.portfolio {
+        padding: 40px 8%;
+    }
+
+    .img-port {
+        width: 100%;
+        max-width: 360px;
+        margin: 0 auto;
+    }
+
+    section.portfolio .flex {
+        gap: 60px;
+    }
+
+    /* FOOTER*/
+
+    footer .flex {
+        flex-direction: column;
+        gap: 0px;
+    }
+
+    footer .line-footer{
+        text-align: center;
+    }
+
+    footer .logo-footer img{
+        width: 100px;
+        margin: -30px 0px 10px 20px;
+    }
+}
