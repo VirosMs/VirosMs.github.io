@@ -1,0 +1,21 @@
+{
+	"folders": [
+		{
+			"name": "VirosMs.github.io",
+			"path": "."
+		},
+		{
+			"name": "js",
+			"path": "../../DAW/DI/Blog/js"
+		},
+		{
+			"name": "images",
+			"path": "../../DAW/DI/Blog/images"
+		},
+		{
+			"name": "css",
+			"path": "../../DAW/DI/Blog/css"
+		}
+	],
+	"settings": {}
+}
