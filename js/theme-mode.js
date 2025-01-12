@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', () => {
     const toogleButton = document.getElementById('darkmode-toggle');
     toogleButton.addEventListener('change', () => {
@@ -27,7 +28,7 @@ function lightOn(primaryColor, secondaryColor) {
     var sun = document.getElementById('sun');
     var moon = document.getElementById('moon');
     const paths = sun.querySelectorAll('path');
-    
+
     // Cambio de color de los iconos en el modo claro
     paths.forEach(path => {
         path.style.stroke = 'white'; // Sol amarillo
@@ -40,10 +41,12 @@ function darkOn(primaryColor, secondaryColor) {
     var sun = document.getElementById('sun');
     var moon = document.getElementById('moon');
     const paths = sun.querySelectorAll('path');
-    
+
     // Cambio de color de los iconos en el modo oscuro
     paths.forEach(path => {
         path.style.stroke = primaryColor; // Sol gris claro
     });
     moon.style.fill = 'white'; // Luna de color blanco
 }
+
+
