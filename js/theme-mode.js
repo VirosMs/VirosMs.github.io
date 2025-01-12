@@ -24,7 +24,7 @@ function lightOn(primaryColor, secondaryColor) {
     
     // Cambio de color de los iconos en el modo claro
     paths.forEach(path => {
-        path.style.stroke = 'yellow'; // Sol amarillo
+        path.style.stroke = 'white'; // Sol amarillo
     });
     moon.style.fill = secondaryColor; // Luna de color negro
 }
@@ -37,7 +37,7 @@ function darkOn(primaryColor, secondaryColor) {
     
     // Cambio de color de los iconos en el modo oscuro
     paths.forEach(path => {
-        path.style.stroke = '#afb12e'; // Sol gris claro
+        path.style.stroke = primaryColor; // Sol gris claro
     });
     moon.style.fill = 'white'; // Luna de color blanco
 }
