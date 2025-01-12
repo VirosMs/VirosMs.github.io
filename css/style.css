@@ -7,23 +7,56 @@
 }
 
 :root {
-    --color-primary: #0E4447;
-    --color-secondary: #df8268;
-    --color-secondary-shadow: #9a5b47;
-    --color-text: #fff;
-    --color-text-secondary: #a7a3a3;
-    --color-shadow: #00000052;
-    --color-mobile-background: #16585c;
-    --color-overlay-background: #0e44478f;
-    --color-shadown-box: #ffffff78;
-    --color-background-overlay: #0e444796;
-    --color-form: #4b7679;
+    --nyanza: #d8f3dcff;
+    --celadon: #b7e4c7ff;
+    --celadon-2: #95d5b2ff;
+    --mint: #74c69dff;
+    --mint-2: #52b788ff;
+    --sea-green: #40916cff;
+    --dartmouth-green: #2d6a4fff;
+    --brunswick-green: #1b4332ff;
+    --dark-green: #081c15ff;
+
+    --background-color: #d8f3dcff;
+    --background-color-transparent: #d8f3dca8;
+    --surface-color: #b7e4c7ff;
+    --primary-color: #74c69dff;
+    --secondary-color: #52b788ff;
+    --text-color: #081c15ff;
+    --text-color-transparent: #081c15a8;
+    --accent-color: #40916cff;
+    --border-color: #1b4332ff;
+    --hover-color: #2d6a4fff;
 }
 
 body {
-    background-color: var(--color-primary);
+    background-color: var(--nyanza);
+    background-image: radial-gradient(var(--celadon) 1px, transparent 1px);
+    background-size: 20px 20px;
     height: 100vh;
+    transition: background-color 0.5s ease, color 0.5s ease, background-image 0.5s ease;
 }
+
+/* Modo Oscuro */
+body.dark-mode {
+    --background-color: #081c15ff;
+    --background-color-transparent: #081c15a8;
+    --surface-color: #1b4332ff;
+    --primary-color: #52b788ff;
+    --secondary-color: #95d5b2ff;
+    --text-color: #d8f3dcff;
+    --text-color-transparent: #d8f3dca8;
+    --accent-color: #40916cff;
+    --border-color: #2d6a4fff;
+    --hover-color: #74c69dff;
+
+    background-color: var(--dark-green);
+    background-image: radial-gradient(var(--brunswick-green) 1px, transparent 1px);
+    background-size: 25px 25px;
+    color: var(--nyanza);
+    transition: background-color 0.5s ease, color 0.5s ease, background-image 0.5s ease;
+}
+
 
 .interface {
     max-width: 1280px;
@@ -38,8 +71,8 @@ body {
     padding: 10px 40px;
     font-size: 18px;
     font-weight: 600;
-    background-color: var(--color-secondary);
-    color: var(--color-text);
+    background-color: var(--primary-color);
+    color: var(--text-color);
     border: 0;
     border-radius: 30px;
     cursor: pointer;
@@ -47,18 +80,18 @@ body {
 }
 
 h2.title {
-    color: var(--color-text);
+    color: var(--text-color);
     font-size: 38px;
     text-align: center;
 }
 
 h2.title span {
-    color: var(--color-secondary);
+    color: var(--accent-color);
 }
 
 button:hover,
 form .btn-send input:hover {
-    box-shadow: 0px 0px 8px var(--color-secondary-shadow);
+    box-shadow: 0px 0px 8px var(--border-color);
     transform: scale(1.05);
 }
 
@@ -67,9 +100,9 @@ form .btn-send input:hover {
     height: 60px;
     border-radius: 50%;
     border: none;
-    background-color: var(--color-secondary);
+    background-color: var(--primary-color);
     font-size: 22px;
-    color: var(--color-text);
+    color: var(--text-color);
     cursor: pointer;
     margin: 0 5px;
     transition: .2s;
@@ -89,14 +122,14 @@ header>.interface {
 }
 
 header a {
-    color: var(--color-text-secondary);
+    color: var(--text-color);
     text-decoration: none;
     display: inline-block;
     transition: .2s
 }
 
 header nav.menu-desktop a:hover {
-    color: var(--color-text);
+    color: var(--hover-color);
     transform: scale(1.1);
 }
 
@@ -126,7 +159,7 @@ header .logo img {
 }
 
 .menu-mobile {
-    background-color: var(--color-mobile-background);
+    background-color: var(--background-color);
     height: 100vh;
     position: fixed;
     top: 0;
@@ -146,7 +179,7 @@ header .logo img {
 }
 
 .menu-mobile nav ul li a {
-    color: var(--color-text);
+    color: var(--text-color);
     font-size: 20px;
     font-weight: 300;
     padding: 20px 8%;
@@ -154,8 +187,8 @@ header .logo img {
 }
 
 .menu-mobile nav ul li a:hover {
-    background-color: var(--color-secondary);
-    color: black;
+    background-color: var(--hover-color);
+    color: var(--background-color);
 }
 
 .menu-mobile .btn-close {
@@ -163,12 +196,12 @@ header .logo img {
 }
 
 .menu-mobile .btn-close i {
-    color: var(--color-secondary);
+    color: var(--primary-color);
     font-size: 30px;
 }
 
 .overlay-menu {
-    background-color: var(--color-overlay-background);
+    background-color: var(--surface-color);
     width: 100%;
     height: 100%;
     position: fixed;
@@ -197,17 +230,17 @@ div.img-top-site img {
 }
 
 .top-of-site h1 {
-    color: var(--color-text);
+    color: var(--text-color);
     font-size: 42px;
     line-height: 40px;
 }
 
 .top-of-site .txt-top-site h1 span {
-    color: var(--color-secondary);
+    color: var(--accent-color);
 }
 
 .top-of-site .txt-top-site p {
-    color: var(--color-text);
+    color: var(--text-color);
     margin: 40px 0;
 }
 
@@ -237,7 +270,7 @@ section.specialities .flex {
 }
 
 .specialities .specialities-box {
-    color: var(--color-text);
+    color: var(--text-color);
     padding: 40px;
     border-radius: 20px;
     margin-top: 45px;
@@ -250,7 +283,7 @@ section.specialities .flex {
 
 .specialities .specialities-box i {
     font-size: 70px;
-    color: var(--color-secondary);
+    color: var(--primary-color);
 }
 
 .specialities .specialities-box h3 {
@@ -260,7 +293,7 @@ section.specialities .flex {
 
 .specialities .specialities-box:hover {
     transform: scale(1.05);
-    box-shadow: 0 0 20px var(--color-shadown-box);
+    box-shadow: 0 0 20px var(--border-color);
 }
 
 /* ABOUT STYLE */
@@ -280,7 +313,7 @@ section.about .flex {
 }
 
 .about .about-txt {
-    color: var(--color-text);
+    color: var(--text-color);
 }
 
 .about .about-txt h2 {
@@ -290,7 +323,7 @@ section.about .flex {
 }
 
 .about .about-txt h2 span {
-    color: var(--color-secondary);
+    color: var(--accent-color);
     display: block;
 }
 
@@ -303,7 +336,7 @@ section.about .flex {
 /* PORTFOLIO STYLE */
 section.portfolio {
     padding: 80px 4%;
-    box-shadow: 0 0 40px 10px var(--color-shadown-box);
+    box-shadow: 0 0 40px 10px var(--border-color);
 }
 
 section.portfolio .flex {
@@ -336,10 +369,10 @@ section.portfolio .flex {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--color-background-overlay);
+    background-color: var(--background-color-transparent);
     font-size: 24px;
     font-weight: 600;
-    color: var(--color-text);
+    color: var(--text-color);
     opacity: 0;
     transition: .5s;
 }
@@ -368,19 +401,19 @@ form {
 form input,
 form textarea {
     width: 100%;
-    background-color: var(--color-form);
+    background-color: var(--surface-color);
     border: 0;
     outline: 0;
     padding: 20px 15px;
     border-radius: 15px;
-    color: var(--color-text);
+    color: var(--text-color);
     font-size: 18px;
 }
 
 
 form input::placeholder,
 form textarea::placeholder {
-    color: var(--color-text-secondary);
+    color: var(--text-color-transparent);
 }
 
 form textarea {
@@ -395,8 +428,8 @@ form .btn-send {
 
 form .btn-send input[type=submit] {
     width: 120px;
-    background-color: var(--color-secondary);
-    color: var(--color-text);
+    background-color: var(--primary-color);
+    color: var(--text-color);
     font-weight: 700;
     cursor: pointer;
     transition: .2s;
@@ -406,7 +439,7 @@ form .btn-send input[type=submit] {
 
 footer {
     padding: 40px 4%;
-    box-shadow: 0 0 40px 10px var(--color-shadown-box);
+    box-shadow: 0 0 40px 10px var(--border-color);
 }
 
 footer a img {
@@ -424,16 +457,16 @@ footer .line-footer {
 }
 
 .borde {
-    border-top: 2px solid var(--color-secondary);
+    border-top: 2px solid var(--primary-color);
 }
 
 footer .line-footer p i {
-    color: var(--color-secondary);
+    color: var(--primary-color);
     font-size: 22px;
 }
 
 footer .line-footer p a {
-    color: var(--color-text);
+    color: var(--text-color);
     text-decoration: none;
     cursor: pointer;
 }

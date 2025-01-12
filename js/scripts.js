@@ -15,3 +15,8 @@ overlayMenu.addEventListener('click', () => {
     menuMobile.classList.remove('open-menu');
 });
 
+
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-mode');
+}
+
