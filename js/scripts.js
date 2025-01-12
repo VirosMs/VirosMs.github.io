@@ -16,7 +16,5 @@ overlayMenu.addEventListener('click', () => {
 });
 
 
-function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-}
+
 
