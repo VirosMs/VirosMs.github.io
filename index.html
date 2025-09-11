@@ -254,13 +254,18 @@
         <section class="form" id="contact">
             <div class="interface">
                 <h2 class="title">HABLA <span>COMINGO.</span></h2>
-                <form action="">
-                    <!--<input type="text" name="" id="" placeholder="Nombre completo:" required>
-                    <input type="text" name="" id="" placeholder="Email:" required>
-                    <input type="text" name="" id="" placeholder="Telefono:">
-                    <textarea name="" id="" placeholder="Escribe tu mensaje:" required></textarea>-->
+                <form action="" id="contactForm">
+                    <input type="text" name="" id="nombre" placeholder="Nombre completo:" required>
+                   
+                    <input type="text" name="" id="email" placeholder="Email:" required>
+                    <span id="error-email" class="error"></span>
+                    
+                    <input type="text" name="" id="telefono" placeholder="Telefono:">
+                    <span id="error-telefono" class="error"></span>
+                    
+                    <textarea name="" id="mensaje" placeholder="Escribe tu mensaje:" required></textarea>
                     <div class="btn-send">
-                        <input type="submit" value="ENVIAR CORREO">
+                        <input type="submit" value="ENVIAR">
                     </div>
                 </form>
             </div>
