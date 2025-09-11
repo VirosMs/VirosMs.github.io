@@ -168,7 +168,7 @@ h2.title span {
 }
 
 button:hover,
-form .btn-send input:hover {
+.btn-send input:hover {
     box-shadow: 0px 0px 8px var(--border-color);
     transform: scale(1.05);
 }
@@ -510,13 +510,13 @@ form textarea {
     max-height: 200px;
 }
 
-form .btn-send {
+.btn-send {
     margin-top: 20px;
     text-align: center;
 }
 
-form .btn-send input[type=submit] {
-    width: 120px;
+.btn-send input[type=submit] {
+    width: 170px;
     background-color: var(--primary-color);
     color: var(--text-color);
     font-weight: 700;
