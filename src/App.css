@@ -232,7 +232,7 @@ header .logo img {
 }
 
 .btn-open-menu i {
-    color: var(--color-secondary);
+    color: var(--primary-color);
     font-size: 40px;
 }
 
@@ -281,6 +281,7 @@ header .logo img {
 }
 
 .menu-mobile .btn-close  {
+    cursor: pointer;
     padding: 20px 5%;
 }
 
@@ -602,6 +603,15 @@ footer .logo-footer img {
     .btn-contact {
         display: none;
     }
+    
+    .btn-open-menu {
+        display: block;
+        cursor: pointer;
+        position: fixed;
+        top: 40px;
+        right: 4%;
+        z-index: 90000;
+    }
 
     .theme-mode-desktop{
         display: none;
@@ -609,10 +619,6 @@ footer .logo-footer img {
 
     header .logo {
         align-items: center;
-    }
-
-    .btn-open-menu {
-        display: block;
     }
 
     /* SPECIALITIES */

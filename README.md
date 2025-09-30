@@ -1,33 +1,73 @@
-# Portfolio
+# React + TypeScript + Vite
 
-¡Bienvenido a mi portfolio! Aquí encontrarás una colección de mis proyectos y trabajos destacados en el ámbito del desarrollo web y diseño interactivo.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Sobre mí
+Currently, two official plugins are available:
 
-Soy un desarrollador web apasionado por crear experiencias digitales únicas y funcionales. Tengo experiencia en diversas tecnologías y siempre estoy buscando aprender y mejorar mis habilidades.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Proyectos Destacados
+## React Compiler
 
-### Proyecto 1: [Nombre del Proyecto]
-- **Descripción:** Breve descripción del proyecto.
-- **Tecnologías:** Lista de tecnologías utilizadas.
-- **Enlace:** [URL del proyecto]
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-### Proyecto 2: [Nombre del Proyecto]
-- **Descripción:** Breve descripción del proyecto.
-- **Tecnologías:** Lista de tecnologías utilizadas.
-- **Enlace:** [URL del proyecto]
+## Expanding the ESLint configuration
 
-### Proyecto 3: [Nombre del Proyecto]
-- **Descripción:** Breve descripción del proyecto.
-- **Tecnologías:** Lista de tecnologías utilizadas.
-- **Enlace:** [URL del proyecto]
+If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
 
-## Contacto
+```js
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
 
-Puedes contactarme a través de los siguientes medios:
-- **Email:** [tu-email@example.com]
-- **LinkedIn:** [Tu Perfil de LinkedIn]
-- **GitHub:** [Tu Perfil de GitHub]
+      // Remove tseslint.configs.recommended and replace with this
+      tseslint.configs.recommendedTypeChecked,
+      // Alternatively, use this for stricter rules
+      tseslint.configs.strictTypeChecked,
+      // Optionally, add this for stylistic rules
+      tseslint.configs.stylisticTypeChecked,
 
-¡Gracias por visitar mi portfolio!
+      // Other configs...
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
+
+You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+
+```js
+// eslint.config.js
+import reactX from 'eslint-plugin-react-x'
+import reactDom from 'eslint-plugin-react-dom'
+
+export default defineConfig([
+  globalIgnores(['dist']),
+  {
+    files: ['**/*.{ts,tsx}'],
+    extends: [
+      // Other configs...
+      // Enable lint rules for React
+      reactX.configs['recommended-typescript'],
+      // Enable lint rules for React DOM
+      reactDom.configs.recommended,
+    ],
+    languageOptions: {
+      parserOptions: {
+        project: ['./tsconfig.node.json', './tsconfig.app.json'],
+        tsconfigRootDir: import.meta.dirname,
+      },
+      // other options...
+    },
+  },
+])
+```
