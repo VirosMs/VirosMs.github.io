@@ -23,15 +23,56 @@ const App: React.FC = () => {
     }
   }, [isDarkMode]);
 
+  useEffect(() => {
+    const sections = [
+      { id: 'home', title: 'virosms - Home' },
+      { id: 'specialties', title: 'virosms - Specialties' },
+      { id: 'about', title: 'virosms - About' },
+      { id: 'portfolio', title: 'virosms - Portfolio' },
+      { id: 'contact', title: 'virosms - Contact' },
+    ];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const section = sections.find((s) => s.id === entry.target.id);
+            if (section) {
+              document.title = section.title;
+            }
+          }
+        });
+      },
+      { threshold: 0.5 } // Update title when 50% of the section is visible
+    );
+
+    sections.forEach((section) => {
+      const element = document.getElementById(section.id);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    // Cleanup observer on component unmount
+    return () => {
+      sections.forEach((section) => {
+        const element = document.getElementById(section.id);
+        if (element) {
+          observer.unobserve(element);
+        }
+      });
+    };
+  }, []);
+
   return (
     <div>
       <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <main>
-        <TopSite />
-        <Specialties />
-        <About />
-        <Portfolio />
-        <Contact />
+        <div id="home"><TopSite /></div>
+        <div id="specialties"><Specialties /></div>
+        <div id="about"><About /></div>
+        <div id="portfolio"><Portfolio /></div>
+        <div id="contact"><Contact /></div>
       </main>
       <Footer isDarkMode={isDarkMode} />
     </div>
