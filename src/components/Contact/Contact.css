@@ -1,0 +1,52 @@
+/* CONTACT STYLE */
+
+section.form {
+    padding: 80px 4%;
+}
+
+form {
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    background-color: var(--surface-color);
+    border: 0;
+    outline: 0;
+    padding: 20px 15px;
+    border-radius: 15px;
+    color: var(--text-color);
+    font-size: 18px;
+}
+
+
+form input::placeholder,
+form textarea::placeholder {
+    color: var(--text-color-transparent);
+}
+
+form textarea {
+    resize: none;
+    max-height: 200px;
+}
+
+.btn-send {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.btn-send input[type=submit] {
+    width: 170px;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    font-weight: 700;
+    cursor: pointer;
+    transition: .2s;
+}

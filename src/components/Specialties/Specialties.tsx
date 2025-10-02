@@ -1,5 +1,6 @@
 
 import React from 'react';
+import './Specialties.css';
 
 const Specialties: React.FC = () => {
   return (

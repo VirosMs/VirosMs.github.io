@@ -1,0 +1,46 @@
+/* MAIN */
+/* TOP SECTION */
+section.top-of-site {
+    padding: 40px 4%;
+}
+
+section.top-of-site .flex {
+    align-items: center;
+    justify-content: center;
+    gap: 90px;
+}
+
+div.img-top-site img {
+    width: 500px;
+    height: 500px;
+}
+
+.top-of-site h1 {
+    color: var(--text-color);
+    font-size: 42px;
+    line-height: 40px;
+}
+
+.top-of-site .txt-top-site h1 span {
+    color: var(--accent-color);
+}
+
+.top-of-site .txt-top-site p {
+    color: var(--text-color);
+    margin: 40px 0;
+}
+
+.top-of-site .img-top-site img {
+    position: relative;
+    animation: flotar 2s ease-in-out infinite alternate;
+}
+
+@keyframes flotar {
+    0% {
+        top: 0;
+    }
+
+    100% {
+        top: 30px;
+    }
+}

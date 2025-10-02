@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import './Contact.css';
 
 const Contact: React.FC = () => {
   const [nombre, setNombre] = useState('');

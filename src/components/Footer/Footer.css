@@ -1,0 +1,40 @@
+/* FOOTER STYLE */
+
+footer {
+    padding: 40px 4%;
+    box-shadow: 0 0 40px 10px var(--border-color);
+}
+
+footer a img {
+    width: 150px;
+    height: 150px;
+}
+
+footer .flex {
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .line-footer {
+    padding: 20px 0;
+}
+
+.borde {
+    border-top: 2px solid var(--primary-color);
+}
+
+footer .line-footer p i {
+    color: var(--primary-color);
+    font-size: 22px;
+}
+
+footer .line-footer p a {
+    color: var(--text-color);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+footer .logo-footer img {
+    width: 130px;
+    height: auto;
+}

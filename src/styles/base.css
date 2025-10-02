@@ -1,0 +1,117 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* GENERAL */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --nyanza: #d8f3dcff;
+    --celadon: #b7e4c7ff;
+    --celadon-2: #95d5b2ff;
+    --mint: #74c69dff;
+    --mint-2: #52b788ff;
+    --sea-green: #40916cff;
+    --dartmouth-green: #2d6a4fff;
+    --brunswick-green: #1b4332ff;
+    --dark-green: #081c15ff;
+
+    --background-color: #d8f3dcff;
+    --background-color-transparent: #d8f3dca8;
+    --surface-color: #b7e4c7ff;
+    --primary-color: #74c69dff;
+    --secondary-color: #52b788ff;
+    --text-color: #081c15ff;
+    --text-color-transparent: #081c15a8;
+    --accent-color: #40916cff;
+    --border-color: #1b4332ff;
+    --hover-color: #2d6a4fff;
+}
+
+body {
+    background-color: var(--nyanza);
+    background-image: radial-gradient(var(--celadon) 1px, transparent 1px);
+    background-size: 20px 20px;
+    min-height: 100vh;
+    transition: background-color 0.5s ease, color 0.5s ease, background-image 0.5s ease;
+}
+
+#root {
+    position: relative;
+    z-index: 1;
+}
+
+/* Modo Oscuro */
+body.dark-mode {
+    --background-color: #081c15ff;
+    --background-color-transparent: #081c15a8;
+    --surface-color: #1b4332ff;
+    --primary-color: #52b788ff;
+    --secondary-color: #95d5b2ff;
+    --text-color: #d8f3dcff;
+    --text-color-transparent: #d8f3dca8;
+    --accent-color: #40916cff;
+    --border-color: #2d6a4fff;
+    --hover-color: #74c69dff;
+
+    background-color: var(--dark-green);
+    background-image: radial-gradient(var(--brunswick-green) 1px, transparent 1px);
+    background-size: 25px 25px;
+    color: var(--nyanza);
+    transition: background-color 0.5s ease, color 0.5s ease, background-image 0.5s ease;
+}
+
+.interface {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.flex {
+    display: flex;
+}
+
+.btn-contact button {
+    padding: 10px 40px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: var(--primary-color);
+    color: var(--text-color);
+    border: 0;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+h2.title {
+    color: var(--text-color);
+    font-size: 38px;
+    text-align: center;
+}
+
+h2.title span {
+    color: var(--accent-color);
+}
+
+button:hover,
+.btn-send input:hover {
+    box-shadow: 0px 0px 8px var(--border-color);
+    transform: scale(1.05);
+}
+
+.btn-social button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    background-color: var(--primary-color);
+    font-size: 22px;
+    color: var(--text-color);
+    cursor: pointer;
+    margin: 0 5px;
+    transition: .2s;
+}

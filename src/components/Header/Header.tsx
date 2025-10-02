@@ -4,6 +4,7 @@ import Logo from './Logo';
 import MenuDesktop from './MenuDesktop';
 import ThemeModeToggle from './ThemeModeToggle';
 import MenuMobile from './MenuMobile';
+import './Header.css';
 
 interface HeaderProps {
   isDarkMode: boolean;

@@ -1,0 +1,35 @@
+/* ABOUT STYLE */
+section.about {
+    padding: 80px 4%;
+}
+
+section.about .flex {
+    align-items: center;
+    gap: 60px;
+}
+
+.about .about-img img {
+    width: 400px;
+    height: 590px;
+    border-radius: 15px;
+}
+
+.about .about-txt {
+    color: var(--text-color);
+}
+
+.about .about-txt h2 {
+    font-size: 40px;
+    line-height: 40px;
+    margin-bottom: 30px;
+}
+
+.about .about-txt h2 span {
+    color: var(--accent-color);
+    display: block;
+}
+
+.about .about-txt p {
+    margin: 20px 0;
+    text-align: justify;
+}

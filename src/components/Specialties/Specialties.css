@@ -1,0 +1,36 @@
+/* ESPECIALITIES STYLE*/
+
+section.specialities {
+    padding: 40px 4%;
+}
+
+section.specialities .flex {
+    gap: 60px
+}
+
+.specialities .specialities-box {
+    color: var(--text-color);
+    padding: 40px;
+    border-radius: 20px;
+    margin-top: 45px;
+    transition: .2s;
+}
+
+.specialities .specialities-box p {
+    text-align: justify;
+}
+
+.specialities .specialities-box i {
+    font-size: 70px;
+    color: var(--primary-color);
+}
+
+.specialities .specialities-box h3 {
+    font-size: 28px;
+    margin: 15px 0;
+}
+
+.specialities .specialities-box:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px var(--border-color);
+}
