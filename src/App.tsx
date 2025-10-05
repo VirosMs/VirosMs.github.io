@@ -1,82 +1,40 @@
+import { useState, useEffect } from "react";
+import Header from "./components/Header/Header";
+import TopSite from "./components/TopSite";
+import Specialties from "./components/Specialties";
+import About from "./components/About";
+import Portfolio from "./components/Portfolio";
+import Contact from "./components/Contact";
+import Footer from "./components/Footer";
 
-import React, { useState, useEffect } from 'react';
-import Header from './components/Header/Header';
-import TopSite from './components/TopSite';
-import Specialties from './components/Specialties';
-import About from './components/About';
-import Portfolio from './components/Portfolio';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
-
-const App: React.FC = () => {
-  const [isDarkMode, setDarkMode] = useState(false);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!isDarkMode);
-  };
+function App() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     if (isDarkMode) {
-      document.body.classList.add('dark-mode');
+      document.documentElement.classList.add("dark");
     } else {
-      document.body.classList.remove('dark-mode');
+      document.documentElement.classList.remove("dark");
     }
   }, [isDarkMode]);
 
-  useEffect(() => {
-    const sections = [
-      { id: 'home', title: 'virosms - Home' },
-      { id: 'specialties', title: 'virosms - Specialties' },
-      { id: 'about', title: 'virosms - About' },
-      { id: 'portfolio', title: 'virosms - Portfolio' },
-      { id: 'contact', title: 'virosms - Contact' },
-    ];
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const section = sections.find((s) => s.id === entry.target.id);
-            if (section) {
-              document.title = section.title;
-            }
-          }
-        });
-      },
-      { threshold: 0.5 } // Update title when 50% of the section is visible
-    );
-
-    sections.forEach((section) => {
-      const element = document.getElementById(section.id);
-      if (element) {
-        observer.observe(element);
-      }
-    });
-
-    // Cleanup observer on component unmount
-    return () => {
-      sections.forEach((section) => {
-        const element = document.getElementById(section.id);
-        if (element) {
-          observer.unobserve(element);
-        }
-      });
-    };
-  }, []);
+  const toggleDarkMode = () => {
+    setIsDarkMode((prevMode) => !prevMode);
+  };
 
   return (
-    <div>
+    <div className="bg-light-green dark:bg-dark-green bg-[size:10px_10px] bg-dotted-pattern">
       <Header isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
       <main>
-        <div id="home"><TopSite /></div>
-        <div id="specialties"><Specialties /></div>
-        <div id="about"><About /></div>
-        <div id="portfolio"><Portfolio /></div>
-        <div id="contact"><Contact /></div>
+        <TopSite />
+        <Specialties />
+        <About />
+        <Portfolio />
+        <Contact />
       </main>
       <Footer isDarkMode={isDarkMode} />
     </div>
-  );
-};
+  )
+}
 
-export default App;
+export default App
