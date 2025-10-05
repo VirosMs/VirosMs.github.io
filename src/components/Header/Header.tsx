@@ -1,49 +1,40 @@
 
-import React, { useState } from 'react';
-import Logo from './Logo';
-import MenuDesktop from './MenuDesktop';
-import ThemeModeToggle from './ThemeModeToggle';
-import MenuMobile from './MenuMobile';
+import { useState } from "react";
+import Logo from "./Logo";
+import MenuDesktop from "./MenuDesktop";
+import MenuMobile from "./MenuMobile";
+import ThemeModeToggle from "./ThemeModeToggle";
 
 interface HeaderProps {
-  isDarkMode: boolean;
-  toggleDarkMode: () => void;
+    isDarkMode: boolean;
+    toggleDarkMode: () => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ isDarkMode, toggleDarkMode }) => {
-  const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
+const Header = ({ isDarkMode, toggleDarkMode }: HeaderProps) => {
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!isMobileMenuOpen);
-  };
+    const toggleMenu = () => {
+        setIsMenuOpen((prev) => !prev);
+    }
 
-  return (
-    <div className="v-header">
-      <header>
-        <div className="interface">
-          <div className="logo">
-            <a href="#">
-              <Logo isDarkMode={isDarkMode} />
-            </a>
-          </div>
-          <MenuDesktop />
-          <div className="theme-mode-desktop">
-            <ThemeModeToggle isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-          </div>
-          <div className="btn-contact">
-            <a href="#contact">
-              <button>Contacto</button>
-            </a>
-          </div>
-          <div className="btn-open-menu" id="btn-menu" onClick={toggleMobileMenu}>
-            <i className="bi bi-list"></i>
-          </div>
-          <MenuMobile isOpen={isMobileMenuOpen} toggleMenu={toggleMobileMenu} isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
-          {isMobileMenuOpen && <div className="overlay-menu" onClick={toggleMobileMenu}></div>}
-        </div>
-      </header>
-    </div>
-  );
+    return (
+        <header className="px-[4%] fixed top-0 left-0 w-full z-[1000] h-[100px]">
+            <div className="flex justify-between items-center h-full">
+                <Logo isDarkMode={isDarkMode} />
+                <nav className="flex items-center gap-4">
+                    <MenuDesktop />
+                    <ThemeModeToggle isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+                    <a href="#contact" className="hidden lg:inline-block py-2 px-6 bg-mint-2 text-white font-bold rounded-full hover:bg-sea-green transition-all duration-300">Contacto</a>
+                    <div className="lg:hidden">
+                        <button onClick={toggleMenu}>
+                            <i className="bi bi-list text-dark-green dark:text-light-green text-3xl"></i>
+                        </button>
+                    </div>
+                    <MenuMobile isOpen={isMenuOpen} toggleMenu={toggleMenu} isDarkMode={isDarkMode} toggleDarkMode={toggleDarkMode} />
+                </nav>
+            </div>
+        </header>
+    );
 };
 
 export default Header;
