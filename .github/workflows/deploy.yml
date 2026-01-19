@@ -17,6 +17,9 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Agregar environment para acceder a los Environment secrets
+    environment:
+      name: github-pages
     steps:
       - name: Checkout your repository
         uses: actions/checkout@v4
@@ -32,7 +35,8 @@ jobs:
         run: npm install
       
       # Pasar las variables de entorno al build
-      # IMPORTANTE: Todas las variables VITE_* deben estar configuradas como secrets
+      # IMPORTANTE: Todas las variables VITE_* deben estar como Environment secrets
+      # en el environment "github-pages" (Settings > Environments > github-pages > Environment secrets)
       - name: Build project
         run: npm run build
         env:
