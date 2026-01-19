@@ -51,6 +51,15 @@ jobs:
       - name: Setup Pages
         uses: actions/configure-pages@v5
 
+      # Verificar que 404.html se haya generado correctamente
+      - name: Verify 404.html exists
+        run: |
+          if [ ! -f dist/404.html ]; then
+            echo "Error: 404.html no se generó en el build"
+            exit 1
+          fi
+          echo "✓ 404.html generado correctamente"
+      
       # Cargar el artefacto (la carpeta 'dist')
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

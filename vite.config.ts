@@ -2,12 +2,26 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path'
 import { fileURLToPath } from 'url'
+import { copyFileSync } from 'fs'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
+// Plugin para copiar index.html a 404.html (necesario para GitHub Pages SPA routing)
+const copy404Plugin = () => {
+  return {
+    name: 'copy-404',
+    writeBundle() {
+      copyFileSync(
+        path.resolve(__dirname, 'dist/index.html'),
+        path.resolve(__dirname, 'dist/404.html')
+      )
+    },
+  }
+}
+
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(), copy404Plugin()],
   // Base path para GitHub Pages (si el repo es username.github.io, usa '/')
   // Si es un proyecto en username.github.io/repo-name, usa '/repo-name/'
   base: '/',

@@ -5,6 +5,9 @@
     <link rel="icon" type="image/x-icon" href="/logo-ico.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
+    <!-- Content Security Policy - Permite Google Fonts y recursos necesarios -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://challenges.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https://*.supabase.co https://*.supabase.in https://*.supabase.io wss://*.supabase.co wss://*.supabase.in; frame-src 'self' https://challenges.cloudflare.com; object-src 'none'; base-uri 'self';" />
+    
     <!-- Primary Meta Tags -->
     <title>Portfolio Profesional - Desarrollador Full Stack | virosms.com</title>
     <meta name="title" content="Portfolio Profesional - Desarrollador Full Stack | virosms.com" />
@@ -47,15 +50,26 @@
     <div id="root"></div>
     <!-- Script para GitHub Pages SPA routing -->
     <!-- Necesario para que las rutas funcionen al acceder directamente (ej: /panel-gestion) -->
+    <!-- GitHub Pages sirve 404.html cuando no encuentra un archivo, este script permite que React Router maneje la ruta -->
     <script>
-      // Solución para GitHub Pages: cuando accedes directamente a una ruta como /panel-gestion
-      // GitHub Pages busca un archivo físico, no lo encuentra, y sirve 404.html.
-      // Este script asegura que React Router pueda manejar la ruta correctamente.
+      // Solución estándar para GitHub Pages con React Router
+      // Cuando GitHub Pages sirve 404.html, la URL puede cambiar, así que la restauramos
       (function() {
-        // Si la URL contiene /404.html, limpiarla
-        if (location.pathname.includes('404.html')) {
-          var path = location.pathname.replace(/\/?404\.html\/?/g, '') || '/';
-          window.history.replaceState(null, '', path + location.search + location.hash);
+        // Verificar si estamos en 404.html y restaurar la ruta original si es necesario
+        var path = window.location.pathname;
+        
+        // Si el pathname contiene 404.html, intentar limpiarlo
+        if (path.indexOf('404.html') !== -1) {
+          var cleanPath = path.replace(/\/404\.html\/?/, '') || '/';
+          window.history.replaceState(null, '', cleanPath + window.location.search + window.location.hash);
+        }
+        
+        // Detectar si fuimos redirigidos desde una ruta que no existe
+        // y restaurar usando sessionStorage si está disponible
+        var redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
         }
       })();
     </script>
