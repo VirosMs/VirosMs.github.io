@@ -1,0 +1,66 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Se ejecuta al hacer push a la rama 'main'
+  push:
+    branches:
+      - main
+  # Permite ejecutar manualmente el workflow desde la pestaña Actions
+  workflow_dispatch:
+
+# Permisos para el GITHUB_TOKEN (necesario para Pages)
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout your repository
+        uses: actions/checkout@v4
+      
+      # Configurar Node.js (necesario para Vite/React)
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+      
+      # Pasar las variables de entorno al build
+      # IMPORTANTE: Todas las variables VITE_* deben estar configuradas como secrets
+      - name: Build project
+        run: npm run build
+        env:
+          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+          VITE_ADMIN_SECRET: ${{ secrets.VITE_ADMIN_SECRET }}
+          VITE_EMAIL_API_URL: ${{ secrets.VITE_EMAIL_API_URL }}
+          VITE_EMAIL_API_KEY: ${{ secrets.VITE_EMAIL_API_KEY }}
+          VITE_CLOUDFLARE_SITE_KEY: ${{ secrets.VITE_CLOUDFLARE_SITE_KEY }} 
+
+      # Configura el ambiente de Pages (necesario para el despliegue)
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      # Cargar el artefacto (la carpeta 'dist')
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: './dist' # Mantenemos la carpeta por defecto de Vite
+
+  # Despliega el artefacto a GitHub Pages
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
