@@ -45,6 +45,20 @@
   </head>
   <body>
     <div id="root"></div>
+    <!-- Script para GitHub Pages SPA routing -->
+    <!-- Necesario para que las rutas funcionen al acceder directamente (ej: /panel-gestion) -->
+    <script>
+      // Solución para GitHub Pages: cuando accedes directamente a una ruta como /panel-gestion
+      // GitHub Pages busca un archivo físico, no lo encuentra, y sirve 404.html.
+      // Este script asegura que React Router pueda manejar la ruta correctamente.
+      (function() {
+        // Si la URL contiene /404.html, limpiarla
+        if (location.pathname.includes('404.html')) {
+          var path = location.pathname.replace(/\/?404\.html\/?/g, '') || '/';
+          window.history.replaceState(null, '', path + location.search + location.hash);
+        }
+      })();
+    </script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
