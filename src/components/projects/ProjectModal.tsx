@@ -155,16 +155,18 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                 </Button>
               </a>
             )}
-            <a
-              href={project.repositoryUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1"
-            >
-              <Button variant="outline" size="lg" className="w-full">
-                💻 Ver Código
-              </Button>
-            </a>
+            {project.repositoryUrl && (
+              <a
+                href={project.repositoryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1"
+              >
+                <Button variant="outline" size="lg" className="w-full">
+                  💻 Ver Código
+                </Button>
+              </a>
+            )}
             {project.documentationUrl && (
               <a
                 href={project.documentationUrl}
