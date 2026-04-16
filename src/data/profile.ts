@@ -49,39 +49,39 @@ export const technologies: Technology[] = [
   { name: 'React', category: 'Frontend', level: 'Beginner' },
   { name: 'TypeScript', category: 'Frontend', level: 'Intermediate' },
   { name: 'Tailwind CSS', category: 'Frontend', level: 'Beginner' },
-  
+
   // Backend - Lenguajes y Frameworks
   { name: 'Java', category: 'Backend', level: 'Expert' },
   { name: 'Spring Boot', category: 'Backend', level: 'Expert' },
   { name: 'Spring Security', category: 'Backend', level: 'Intermediate' },
   { name: 'Kotlin', category: 'Backend', level: 'Intermediate' },
-  
+
   // Backend - Arquitectura y Microservicios
   { name: 'Diseño de microservicios', category: 'Backend', level: 'Advanced' },
   { name: 'Spring Cloud', category: 'Backend', level: 'Advanced' },
   { name: 'Observabilidad (logs, métricas, trazas)', category: 'Backend', level: 'Advanced' },
-  
+
   // Backend - APIs y Contratos
   { name: 'APIs REST', category: 'Backend', level: 'Expert' },
   { name: 'Swagger / OpenAPI', category: 'Backend', level: 'Advanced' },
   { name: 'JWT / OAuth2', category: 'Backend', level: 'Advanced' },
-  
+
   // Backend - Persistencia
   { name: 'JPA / Hibernate', category: 'Backend', level: 'Expert' },
   { name: 'Spring Data', category: 'Backend', level: 'Advanced' },
-  
+
   // Bases de Datos
   { name: 'Oracle', category: 'Database', level: 'Advanced' },
   { name: 'MySQL', category: 'Database', level: 'Advanced' },
   { name: 'PostgreSQL', category: 'Database', level: 'Advanced' },
   { name: 'MongoDB', category: 'Database', level: 'Intermediate' },
   { name: 'Cassandra', category: 'Database', level: 'Intermediate' },
-  
+
   // DevOps
   { name: 'Docker', category: 'DevOps', level: 'Intermediate' },
   { name: 'Git / GitHub', category: 'DevOps', level: 'Advanced' },
   { name: 'CI/CD', category: 'DevOps', level: 'Beginner' },
-  
+
   // Mobile
   { name: 'Kotlin (Android)', category: 'Mobile', level: 'Intermediate' },
   { name: 'Flutter / Dart', category: 'Mobile', level: 'Intermediate' },
@@ -92,15 +92,25 @@ export const experience: Experience[] = [
   {
     id: '1',
     company: 'NTT DATA Europe & Latam',
+    position: 'Developer',
+    startDate: '2026-01',
+    endDate: 'Present',
+    description: 'Desarrollo de microservicios y APIs REST con Java y Spring Boot.\n Colaboración con equipos de CaixaBank.\n Mantenimiento y evolución de servicios backend.\n Gestión de bases de datos Oracle y DB2.\n Automatización de pruebas con JUnit y Mockito.\n Integración continua y despliegues CI/CD.\n Soporte técnico en entornos productivos.\n Trabajo en equipos ágiles (Scrum).',
+    technologies: ['Java', 'Spring', 'Spring Boot', 'Oracle', 'DB2', 'JUnit', 'Mockito', 'Scrum', "APIs REST", "Microservicios", "SQL", "Git", "MySQL", "Postman", "Swagger", "OpenAPI", "IBM InfoSphere", "IntelliJ", "Banca"],
+    location: 'Castellón, España',
+  },
+  {
+    id: '2',
+    company: 'NTT DATA Europe & Latam',
     position: 'Junior Developer 3',
     startDate: '2025-07',
-    endDate: 'Present',
+    endDate: '2026-01',
     description: 'Desarrollo de microservicios y APIs REST con Java y Spring.\nGestión de bases de datos Oracle y DB2.\nAutomatización de pruebas con JUnit y Mockito.\nGestión de incidencias y soporte técnico en entornos productivos.\nTrabajo en entornos ágiles (Scrum).',
     technologies: ['Java', 'Spring', 'Spring Boot', 'Oracle', 'DB2', 'JUnit', 'Mockito', 'Scrum'],
     location: 'Castellón, España',
   },
   {
-    id: '2',
+    id: '3',
     company: 'NTT DATA Europe & Latam',
     position: 'Junior Developer 2',
     startDate: '2025-01',
@@ -110,7 +120,7 @@ export const experience: Experience[] = [
     location: 'Castellón, España',
   },
   {
-    id: '3',
+    id: '4',
     company: 'NTT DATA Europe & Latam',
     position: 'Junior Developer 1',
     startDate: '2024-07',
@@ -120,7 +130,7 @@ export const experience: Experience[] = [
     location: 'Castellón, España',
   },
   {
-    id: '4',
+    id: '5',
     company: 'NTT DATA Europe & Latam',
     position: 'Student Internship',
     startDate: '2023-10',
@@ -130,7 +140,7 @@ export const experience: Experience[] = [
     location: 'Castellón, España',
   },
   {
-    id: '5',
+    id: '6',
     company: 'Hospital Universitario de la Plana',
     position: 'IT Technician',
     startDate: '2022-03',
