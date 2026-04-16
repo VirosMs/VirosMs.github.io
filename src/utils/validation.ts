@@ -53,11 +53,18 @@ export function validateProject(project: Partial<ProjectCreate>): {
     errors.push('La categoría es requerida');
   }
 
-  if (!project.repositoryUrl || !isValidUrl(project.repositoryUrl)) {
+  const hasCodeUrl = project.repositoryUrl && project.repositoryUrl.trim() !== '';
+  const hasLiveUrl = project.liveUrl && project.liveUrl.trim() !== '';
+
+  if (!hasCodeUrl && !hasLiveUrl) {
+    errors.push('Debe proporcionar al menos la URL del código (Repositorio) o la URL del proyecto en vivo');
+  }
+
+  if (hasCodeUrl && project.repositoryUrl && !isValidUrl(project.repositoryUrl)) {
     errors.push('La URL del repositorio es inválida');
   }
 
-  if (project.liveUrl && !isValidUrl(project.liveUrl)) {
+  if (hasLiveUrl && project.liveUrl && !isValidUrl(project.liveUrl)) {
     errors.push('La URL del proyecto en vivo es inválida');
   }
 

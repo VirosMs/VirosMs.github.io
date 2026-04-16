@@ -246,7 +246,7 @@ export default function ProjectForm({ project, onSuccess, onCancel }: ProjectFor
         {/* URL Repositorio */}
         <div>
           <label htmlFor="repositoryUrl" className="block text-sm font-medium text-secondary-700 dark:text-secondary-300 mb-2">
-            URL Repositorio *
+            URL Repositorio
           </label>
           <input
             type="url"
@@ -254,7 +254,6 @@ export default function ProjectForm({ project, onSuccess, onCancel }: ProjectFor
             name="repositoryUrl"
             value={formData.repositoryUrl}
             onChange={handleChange}
-            required
             className="w-full px-4 py-2 bg-white dark:bg-secondary-900 text-secondary-900 dark:text-secondary-100 border border-secondary-300 dark:border-secondary-600 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-transparent"
           />
         </div>
