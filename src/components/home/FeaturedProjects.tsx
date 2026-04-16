@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { projectService } from '@/services/projectService';
 import type { Project } from '@/types/project';
 import ProjectCard from '@/components/projects/ProjectCard';
+import ProjectModal from '@/components/projects/ProjectModal';
 import { Link } from 'react-router-dom';
 import Button from '@/components/common/Button';
 
@@ -9,6 +10,18 @@ export default function FeaturedProjects() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
 
   useEffect(() => {
     const loadProjects = async () => {
@@ -77,7 +90,13 @@ export default function FeaturedProjects() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
           {projects.map((project) => (
-            <ProjectCard key={project.id} project={project} featured />
+            <div
+              key={project.id}
+              onClick={() => handleProjectClick(project)}
+              className="cursor-pointer h-full"
+            >
+              <ProjectCard project={project} featured />
+            </div>
           ))}
         </div>
         
@@ -88,6 +107,12 @@ export default function FeaturedProjects() {
             </Button>
           </Link>
         </div>
+
+        <ProjectModal
+          project={selectedProject}
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+        />
       </div>
     </section>
   );

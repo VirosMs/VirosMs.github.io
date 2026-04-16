@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import type { Project } from '@/types/project';
 import { cn } from '@/utils/classnames';
 import Button from '@/components/common/Button';
@@ -10,6 +10,28 @@ interface ProjectModalProps {
 }
 
 export default function ProjectModal({ project, isOpen, onClose }: ProjectModalProps) {
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [enlargedImage, setEnlargedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      setCurrentImageIndex(0);
+      setEnlargedImage(null);
+    }
+  }, [isOpen, project]);
+
+  const maxIndex = project ? Math.max(0, (project.images?.length || 0) - 2) : 0;
+
+  const nextImage = () => {
+    if (!project?.images) return;
+    setCurrentImageIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
+  };
+
+  const prevImage = () => {
+    if (!project?.images) return;
+    setCurrentImageIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
+  };
+
   // Cerrar con ESC
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -111,18 +133,68 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
           {project.images && project.images.length > 0 && (
             <div className="mb-6">
               <h3 className="text-xl font-semibold mb-3 text-secondary-900 dark:text-secondary-100">Screenshots</h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {project.images.map((image, index) => (
-                  <div key={index} className="rounded-lg overflow-hidden border border-secondary-200 dark:border-secondary-700">
-                    <img
-                      src={image}
-                      alt={`${project.title} - Screenshot ${index + 1}`}
-                      className="w-full h-auto"
-                      loading="lazy"
-                    />
+              {project.images.length > 2 ? (
+                <div className="relative group rounded-lg overflow-hidden border border-secondary-200 dark:border-secondary-700 bg-secondary-50 dark:bg-secondary-800">
+                  <div className="flex transition-transform duration-500 ease-in-out" style={{ transform: `translateX(-${currentImageIndex * 50}%)` }}>
+                    {project.images.map((image, index) => (
+                      <div key={index} className="w-1/2 flex-shrink-0 px-2 flex justify-center items-center">
+                        <div onClick={() => setEnlargedImage(image)} className="block w-full cursor-zoom-in">
+                          <img
+                            src={image}
+                            alt={`${project.title} - Screenshot ${index + 1}`}
+                            className="w-full h-auto object-contain max-h-[500px] rounded-lg hover:opacity-90 transition-opacity"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
+                  {/* Controles del Carrusel */}
+                  <button
+                    onClick={prevImage}
+                    className="absolute top-1/2 left-2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
+                    aria-label="Anterior"
+                  >
+                    ❮
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="absolute top-1/2 right-2 -translate-y-1/2 bg-black/50 text-white p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity hover:bg-black/70"
+                    aria-label="Siguiente"
+                  >
+                    ❯
+                  </button>
+                  {/* Indicadores */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2">
+                    {Array.from({ length: maxIndex + 1 }).map((_, index) => (
+                      <button
+                        key={index}
+                        onClick={() => setCurrentImageIndex(index)}
+                        className={cn(
+                          "w-2.5 h-2.5 rounded-full transition-colors",
+                          currentImageIndex === index ? "bg-white" : "bg-white/50 hover:bg-white/80"
+                        )}
+                        aria-label={`Ir a la vista ${index + 1}`}
+                      />
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  {project.images.map((image, index) => (
+                    <div key={index} className="rounded-lg overflow-hidden border border-secondary-200 dark:border-secondary-700">
+                      <div onClick={() => setEnlargedImage(image)} className="block w-full h-full cursor-zoom-in">
+                        <img
+                          src={image}
+                          alt={`${project.title} - Screenshot ${index + 1}`}
+                          className="w-full h-auto hover:opacity-90 transition-opacity"
+                          loading="lazy"
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
           )}
 
@@ -155,16 +227,18 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
                 </Button>
               </a>
             )}
-            <a
-              href={project.repositoryUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1"
-            >
-              <Button variant="outline" size="lg" className="w-full">
-                💻 Ver Código
-              </Button>
-            </a>
+            {project.repositoryUrl && (
+              <a
+                href={project.repositoryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1"
+              >
+                <Button variant="outline" size="lg" className="w-full">
+                  💻 Ver Código
+                </Button>
+              </a>
+            )}
             {project.documentationUrl && (
               <a
                 href={project.documentationUrl}
@@ -200,6 +274,36 @@ export default function ProjectModal({ project, isOpen, onClose }: ProjectModalP
           </div>
         </div>
       </div>
+
+      {/* Lightbox para imágenes */}
+      {enlargedImage && (
+        <div 
+          className="fixed inset-0 z-[60] flex items-center justify-center p-4 md:p-8 bg-black/95 cursor-zoom-out animate-fade-in"
+          onClick={(e) => {
+            e.stopPropagation();
+            setEnlargedImage(null);
+          }}
+        >
+          <img 
+            src={enlargedImage} 
+            alt="Vista ampliada" 
+            className="w-auto h-auto max-w-full max-h-full object-contain select-none shadow-2xl rounded-sm"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <button
+            className="absolute top-4 right-4 md:top-8 md:right-8 bg-black/50 text-white rounded-full p-2 hover:bg-black/80 transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              setEnlargedImage(null);
+            }}
+            aria-label="Cerrar imagen"
+          >
+            <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+      )}
     </div>
   );
 }

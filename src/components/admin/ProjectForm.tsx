@@ -178,6 +178,7 @@ export default function ProjectForm({ project, onSuccess, onCancel }: ProjectFor
             value={formData.image || ''}
             onChange={(url) => setFormData((prev) => ({ ...prev, image: url }))}
             folder={`projects/${project?.id || 'new'}`}
+            projectTitle={formData.title}
           />
         </div>
 
@@ -191,6 +192,7 @@ export default function ProjectForm({ project, onSuccess, onCancel }: ProjectFor
             onMultipleChange={(urls) => setFormData((prev) => ({ ...prev, images: urls }))}
             existingImages={formData.images || []}
             folder={`projects/${project?.id || 'new'}`}
+            projectTitle={formData.title}
           />
         </div>
 

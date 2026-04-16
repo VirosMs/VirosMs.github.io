@@ -18,7 +18,7 @@ export default function ProjectCard({ project, featured = false }: ProjectCardPr
   return (
     <div
       className={cn(
-        'bg-white dark:bg-secondary-800 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:scale-105 cursor-pointer group',
+        'flex flex-col h-full bg-white dark:bg-secondary-800 rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-2 hover:scale-105 cursor-pointer group',
         featured && 'border-2 border-primary-200 dark:border-primary-700'
       )}
     >
@@ -38,11 +38,11 @@ export default function ProjectCard({ project, featured = false }: ProjectCardPr
       </div>
 
       {/* Contenido */}
-      <div className="p-6">
+      <div className="p-6 flex flex-col flex-1">
         {/* Categoría */}
         <span
           className={cn(
-            'inline-block px-3 py-1 text-xs font-semibold rounded-full mb-3',
+            'self-start px-3 py-1 text-xs font-semibold rounded-full mb-3',
             categoryColors[project.category]
           )}
         >
@@ -70,31 +70,35 @@ export default function ProjectCard({ project, featured = false }: ProjectCardPr
           )}
         </div>
 
-        {/* Botones */}
-        <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
-          {project.liveUrl && (
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 text-center text-sm font-medium text-primary-600 hover:text-primary-700 py-2 px-4 border border-primary-300 rounded-lg hover:bg-primary-50 transition-colors"
-            >
-              Ver Demo
-            </a>
-          )}
-          <a
-            href={project.repositoryUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 text-center text-sm font-medium bg-primary-600 text-white py-2 px-4 rounded-lg hover:bg-primary-700 transition-colors"
-          >
-            Código
-          </a>
-        </div>
-        
-        {/* Indicador de click para ver más */}
-        <div className="mt-3 text-center">
-          <span className="text-xs text-secondary-500 dark:text-secondary-400 transition-colors duration-300 group-hover:text-primary-600 dark:group-hover:text-primary-400">Click para ver más detalles</span>
+        <div className="mt-auto flex flex-col gap-3">
+          {/* Botones */}
+          <div className="flex gap-2" onClick={(e) => e.stopPropagation()}>
+            {project.liveUrl && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 text-center text-sm font-medium text-primary-600 hover:text-primary-700 py-2 px-4 border border-primary-300 rounded-lg hover:bg-primary-50 transition-colors"
+              >
+                Ver Demo
+              </a>
+            )}
+            {project.repositoryUrl && (
+              <a
+                href={project.repositoryUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 text-center text-sm font-medium bg-primary-600 text-white py-2 px-4 rounded-lg hover:bg-primary-700 transition-colors"
+              >
+                Código
+              </a>
+            )}
+          </div>
+          
+          {/* Indicador de click para ver más */}
+          <div className="text-center">
+            <span className="text-xs text-secondary-500 dark:text-secondary-400 transition-colors duration-300 group-hover:text-primary-600 dark:group-hover:text-primary-400">Click para ver más detalles</span>
+          </div>
         </div>
       </div>
     </div>
