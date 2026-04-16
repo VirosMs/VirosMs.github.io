@@ -10,6 +10,7 @@ interface ImageUploadProps {
   multiple?: boolean;
   onMultipleChange?: (urls: string[]) => void;
   existingImages?: string[];
+  projectTitle?: string;
 }
 
 export default function ImageUpload({
@@ -20,10 +21,50 @@ export default function ImageUpload({
   multiple = false,
   onMultipleChange,
   existingImages = [],
+  projectTitle = '',
 }: ImageUploadProps) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [preview, setPreview] = useState<string | null>(value || null);
+
+  const convertToWebP = (file: File, index: number = 0): Promise<File> => {
+    return new Promise((resolve, reject) => {
+      const url = URL.createObjectURL(file);
+      const img = new Image();
+      
+      img.onload = () => {
+        URL.revokeObjectURL(url);
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        if (!ctx) return reject(new Error('Canvas no soportado'));
+        
+        ctx.drawImage(img, 0, 0);
+        
+        canvas.toBlob((blob) => {
+          if (!blob) return reject(new Error('Conversión fallida'));
+          
+          let safeTitle = projectTitle.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+          if (!safeTitle) safeTitle = 'proyecto';
+          
+          const filename = `${safeTitle}-${Date.now()}${multiple ? `-${index}` : ''}.webp`;
+          const newFile = new File([blob], filename, {
+            type: 'image/webp',
+            lastModified: Date.now(),
+          });
+          resolve(newFile);
+        }, 'image/webp', 0.85);
+      };
+      
+      img.onerror = () => {
+        URL.revokeObjectURL(url);
+        reject(new Error('No se pudo cargar la imagen'));
+      };
+      
+      img.src = url;
+    });
+  };
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -35,23 +76,24 @@ export default function ImageUpload({
     try {
       if (multiple && onMultipleChange) {
         // Subir múltiples imágenes
-        const fileArray = Array.from(files);
         const basePath = folder.includes('/') ? folder : `${folder}/new`;
         
-        const urls = await storageService.uploadImages(fileArray, basePath);
+        const webpFiles = await Promise.all(
+          Array.from(files).map((file, i) => convertToWebP(file, i))
+        );
+        
+        const urls = await storageService.uploadImages(webpFiles, basePath);
         onMultipleChange([...existingImages, ...urls]);
       } else {
         // Subir una sola imagen
         const file = files[0];
         if (!file) return;
         
-        const timestamp = Date.now();
-        const fileExtension = file.name.split('.').pop() || 'jpg';
-        const fileName = `image-${timestamp}.${fileExtension}`;
         const basePath = folder.includes('/') ? folder : `${folder}/new`;
-        const path = `${basePath}/${fileName}`;
+        const webpFile = await convertToWebP(file, 0);
+        const path = `${basePath}/${webpFile.name}`;
         
-        const url = await storageService.uploadImage(file, path);
+        const url = await storageService.uploadImage(webpFile, path);
         onChange(url);
         setPreview(url);
       }
