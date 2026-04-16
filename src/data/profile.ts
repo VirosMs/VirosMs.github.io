@@ -96,7 +96,7 @@ export const experience: Experience[] = [
     startDate: '2026-01',
     endDate: 'Present',
     description: 'Desarrollo de microservicios y APIs REST con Java y Spring Boot.\nColaboración con equipos de CaixaBank.\nMantenimiento y evolución de servicios backend.\nGestión de bases de datos Oracle y DB2.\nAutomatización de pruebas con JUnit y Mockito.\nIntegración continua y despliegues CI/CD.\nSoporte técnico en entornos productivos.\nTrabajo en equipos ágiles (Scrum).',
-    technologies: ['Java', 'Spring', 'Spring Boot', 'Oracle', 'DB2', 'JUnit', 'Mockito', 'Scrum', "APIs REST", "Microservicios", "SQL", "Git", "MySQL", "Postman", "Swagger", "OpenAPI", "IBM InfoSphere", "IntelliJ", "Banca"],
+    technologies: ['Java', 'Spring', 'Spring Boot', 'Oracle', 'DB2', 'JUnit', 'Mockito', 'Scrum', 'APIs REST', 'Microservicios', 'SQL', 'Git', 'MySQL', 'Postman', 'Swagger', 'OpenAPI', 'IBM InfoSphere', 'IntelliJ', 'Banca'],
     location: 'Castellón, España',
   },
   {
