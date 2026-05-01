@@ -13,6 +13,21 @@ interface ImageUploadProps {
   projectTitle?: string;
 }
 
+// Sanitize image URLs before using them in the DOM to avoid dangerous protocols.
+function sanitizeImageUrl(url: string | null | undefined): string | null {
+  if (!url) return null;
+  try {
+    const parsed = new URL(url, window.location.origin);
+    const protocol = parsed.protocol.toLowerCase();
+    if (protocol === 'http:' || protocol === 'https:') {
+      return parsed.toString();
+    }
+  } catch {
+    // If URL construction fails, treat as invalid/unsafe.
+  }
+  return null;
+}
+
 export default function ImageUpload({
   label,
   value,
@@ -25,7 +40,7 @@ export default function ImageUpload({
 }: ImageUploadProps) {
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [preview, setPreview] = useState<string | null>(value || null);
+  const [preview, setPreview] = useState<string | null>(sanitizeImageUrl(value));
 
   const convertToWebP = (file: File, index: number = 0): Promise<File> => {
     return new Promise((resolve, reject) => {
@@ -95,7 +110,7 @@ export default function ImageUpload({
         
         const url = await storageService.uploadImage(webpFile, path);
         onChange(url);
-        setPreview(url);
+        setPreview(sanitizeImageUrl(url));
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Error al subir imagen');
